@@ -32,6 +32,15 @@ def get_slot_machine_spin(rows,cols,symbols):
     
     return columns
 
+def print_slot_machine(columns):
+    for row in range(len(columns[0])):
+        for i,column in enumerate(columns):
+            if i!= len(columns) -1:
+                print(column[row],end=" | ")
+            else:
+                print(column[row],end="")
+        print()
+
 def deposit():
     while True:
         amount = input("Please enter your deposit $")
@@ -83,6 +92,10 @@ def main():
         else:
             break
     print(f"you have bet ${bet} on {lines} lines and your total bet is ${total_bet}")
+    
+    slots = get_slot_machine_spin(ROWS,COLS,sybmol_count)
+    print_slot_machine(slots)
+    
     
     
 main()
