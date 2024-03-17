@@ -14,6 +14,28 @@ sybmol_count = {
     "D":8
 }
 
+sybmol_value = {
+    "A":5,
+    "B":4,
+    "C":3,
+    "D":2
+}
+
+def check_winnings(columns,lines,bet,values):
+    winnings = 0
+    winning_lines = []
+    
+    for line in range(lines):
+        symbol = columns[0][line]
+        for column in columns:
+            sybmol_to_check = column[line]
+            if symbol != sybmol_to_check:
+                break
+        else:
+            winnings+=values[sybmol_to_check]*bet
+            winning_lines.append(line+1)
+    return winnings,winning_lines
+
 def get_slot_machine_spin(rows,cols,symbols):
     all_symbols = []
     for symbol,sybmol_count in symbols.items():
@@ -95,6 +117,9 @@ def main():
     
     slots = get_slot_machine_spin(ROWS,COLS,sybmol_count)
     print_slot_machine(slots)
+    winnings,winning_lines = check_winnings(slots,lines,bet,sybmol_value)
+    print(f"you won ${winnings}.")
+    print(f"you want on lines:",*winning_lines)
     
     
     
